@@ -56,6 +56,34 @@ class Usuario
 		 //print_r($datos);
 	}
 
+	public function Registrarse()
+	{
+	$sql = "INSERT INTO usuario(id, usuario, contrasena, correo, nombres, apellidos, fecha) VALUES (null,'$this->usuario','$this->contrasena','$this->correo','$this->nombres','$this->apellidos',now())";
+	//echo $sql;
+	$this->con->consultaSimple($sql);
+	return true;	
+	}
+
+	public function getUsuarios()
+	{
+		$sql = "select * from usuario";
+		$usuarios =  $this->con->consultaRetorno($sql);
+		return $usuarios;
+	}
+
+	public function eliminar_usuario($id)
+	{
+		$sql = "Delete from usuario where id = $id";
+		$this->con->consultaSimple($sql);
+	}
+
+	public function modificar()
+	{
+		$sql = "update usuario set usuario = ".$this->usuario.", contrasena = ".$this->contrasena.", correo = ".$this->correo.", nombres = ".$this->nombres.", apellidos = ".$this->apellidos.", fecha = now()";
+
+		$this->con->consultaSimple($sql);
+	}
+
 }
 
 

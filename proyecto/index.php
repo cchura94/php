@@ -7,7 +7,6 @@
 
 	$usuario->Ingresar();
 
-
 */
 
 	header("Location: views/registro/Ingresar.php ");
