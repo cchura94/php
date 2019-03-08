@@ -79,9 +79,16 @@ class Usuario
 
 	public function modificar()
 	{
-		$sql = "update usuario set usuario = ".$this->usuario.", contrasena = ".$this->contrasena.", correo = ".$this->correo.", nombres = ".$this->nombres.", apellidos = ".$this->apellidos.", fecha = now()";
-
+		$sql = "update usuario set usuario = '$this->usuario', contrasena = '$this->contrasena', correo = '$this->correo', nombres = '$this->nombres', apellidos = '$this->apellidos', fecha = now() where id = $this->id";
+//echo $this->id;
 		$this->con->consultaSimple($sql);
+		header("Location: ./../admin/index.php");
+	}
+
+	public function getUser()
+	{
+		$sql = "select * from usuario where id = ".$this->id;
+		return $this->con->consultaRetorno($sql);
 	}
 
 }

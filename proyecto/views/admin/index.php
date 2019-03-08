@@ -18,6 +18,7 @@ if ($_POST) {
 
 	if ($boton == 'x') {
 		$usuario->eliminar_usuario($id);
+		header("Location: index.php ");
 	}
 }
 ?>
@@ -59,7 +60,9 @@ if ($_POST) {
 								<input type="hidden" value="<?= $key['id'] ?>" name="id">
 								<input type="submit" value="x" name="boton">
 							</form>
-							<form action="" method="post">
+							<form action="editar_usuario.php" method="post">
+								<input type="hidden" value="<?= $key['id'] ?>" name="id">
+								<input type="hidden" name="editar" value="u">
 								<input type="submit" value="-">
 							</form>
 						</td>
