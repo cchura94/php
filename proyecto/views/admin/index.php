@@ -1,6 +1,5 @@
 <?php 
 session_start();
-echo $_SESSION['auth'];
 if ($_SESSION['auth'] != 'si') {
 	header('Location: ./../registro/Ingresar.php');
 }
@@ -60,11 +59,7 @@ if ($_POST) {
 								<input type="hidden" value="<?= $key['id'] ?>" name="id">
 								<input type="submit" value="x" name="boton">
 							</form>
-							<form action="editar_usuario.php" method="post">
-								<input type="hidden" value="<?= $key['id'] ?>" name="id">
-								<input type="hidden" name="editar" value="u">
-								<input type="submit" value="-">
-							</form>
+							<a href="usuario/editar_usuario.php?id=<?= $key['id'] ?>">Editar</a>
 						</td>
 					</tr>
 					<?php } ?>

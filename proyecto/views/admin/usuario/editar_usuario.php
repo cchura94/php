@@ -1,6 +1,8 @@
 <?php 
+require './../../layouts/header.php';
+require './../../layouts/menu.php';
 
-require './../../models/Usuario.php';
+require './../../../models/Usuario.php';
 $usuario = new Usuario();
 
 	if ($_POST) {
@@ -14,27 +16,31 @@ $usuario = new Usuario();
 			$usuario->set('apellidos', $_POST['apellidos']);
 			$usuario->set('correo', $_POST['correo']);
 
-			$usuario->modificar();
+			$mod = $usuario->modificar();
+			if($mod){
+				header("Location: ../index.php");
+			}
 		}
-
-			$usuario->set("id", $id);
-			$u = $usuario->getUser();
 		
 	}
 
+	if($_GET){
+		$id = $_GET['id'];
+		$usuario->set("id", $id);
+		$u = $usuario->getUser();
+	}
+
 while ($user = $u->fetch_array()) {
-
  ?>
-
 <form action="" method="post">
 	<input type="hidden" name="editar" value="e">
 		<fieldset>
 			<legend>Modificar Usuario</legend>
-			<input type="hidden" value="<?= $_POST['id'] ?>" name="id">
+			<input type="hidden" value="<?= $id ?>" name="id">
 			<label for="usuario">Ingrese su Usuario: </label>
 			<input type="text" name="usuario" id="usuario" required="" value="<?= $user['usuario'] ?>"><br>
 			<label for="contrasena">Contraseña: </label>
-			<input type="password" name="contrasena" id="contrasena" required="" value="<?= $user['contrasena'] ?>">
+			<input type="password" name="contrasena" id="contrasena" required="" value="">
 		</fieldset>
 		<fieldset>
 			<legend>Datos Personales</legend>
@@ -49,7 +55,11 @@ while ($user = $u->fetch_array()) {
 
 			<input type="submit" value="Modificar">
 			<input type="reset">
-		</fieldset>		
+		</fieldset>
 	</form>
 
-	<?php } ?>
+	<?php } 
+
+require './../../layouts/footer.php';
+
+	?>

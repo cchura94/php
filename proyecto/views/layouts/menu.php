@@ -7,7 +7,7 @@
 				<a href="productos.php">Productos</a>
 			</li>
 			<li>
-				<a href="categorias.php">Categorias</a>
+				<a href="./../registro/Salir.php">Salir</a>
 			</li>
 		</ul>		
 	</div>

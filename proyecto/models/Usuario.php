@@ -43,25 +43,28 @@ class Usuario
 
 	public function verificar($u, $p)
 	{
-		$sql = "SELECT * FROM usuario where usuario = '$u' and contrasena = '$p'";
+		$c = md5($p); //Encriptando la contraseña
+
+		$sql = "SELECT * FROM usuario where usuario = '$u' and contrasena = '$c'";
 		//echo $sql;
-		 $datos =  $this->con->consultaRetorno($sql);
+		$datos =  $this->con->consultaRetorno($sql);
 		 //echo $datos->num_rows;
 
-		 if ($datos->num_rows > 0){
+		if ($datos->num_rows > 0){
 		 	//echo "Bienvenido: ". $u;
-		 	return True;
-		 }
+			return True;
+		}
 		return False;		 
 		 //print_r($datos);
 	}
 
 	public function Registrarse()
 	{
-	$sql = "INSERT INTO usuario(id, usuario, contrasena, correo, nombres, apellidos, fecha) VALUES (null,'$this->usuario','$this->contrasena','$this->correo','$this->nombres','$this->apellidos',now())";
+		$c = md5($this->contrasena); // Encriptando la contraseña
+		$sql = "INSERT INTO usuario(id, usuario, contrasena, correo, nombres, apellidos, fecha) VALUES (null,'$this->usuario','$c','$this->correo','$this->nombres','$this->apellidos',now())";
 	//echo $sql;
-	$this->con->consultaSimple($sql);
-	return true;	
+		$this->con->consultaSimple($sql);
+		return true;	
 	}
 
 	public function getUsuarios()
@@ -79,10 +82,11 @@ class Usuario
 
 	public function modificar()
 	{
-		$sql = "update usuario set usuario = '$this->usuario', contrasena = '$this->contrasena', correo = '$this->correo', nombres = '$this->nombres', apellidos = '$this->apellidos', fecha = now() where id = $this->id";
-//echo $this->id;
+		$c = md5($this->contrasena);
+		$sql = "update usuario set usuario = '$this->usuario', contrasena = '$c', correo = '$this->correo', nombres = '$this->nombres', apellidos = '$this->apellidos', fecha = now() where id = $this->id";
+
 		$this->con->consultaSimple($sql);
-		header("Location: ./../admin/index.php");
+		return true;
 	}
 
 	public function getUser()
@@ -95,6 +99,4 @@ class Usuario
 
 
 
-
-
- ?>
+?>
