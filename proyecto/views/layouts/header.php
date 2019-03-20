@@ -1,8 +1,17 @@
+<?php
+
+session_start();
+if ($_SESSION['auth'] != 'si') {
+	header('Location: ./../registro/Ingresar.php');
+}
+
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Mi pagina | Admin</title>
+	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 </head>
 <body>
 
