@@ -39,6 +39,14 @@ class Producto
 		return $productos;
 	}
 
+	public function insertar_producto()
+	{
+		$sql = "INSERT INTO producto(id, nombre, descripcion, imagen, precio_compra, precio_venta, cantidad_stock, categoria_id, activo, fecha_vencimiento) VALUES (null,'$this->nombre','$this->descripcion','$this->imagen',$this->precio_compra, $this->precio_venta,$this->cantidad_stock,$this->categoria_id,$this->activo,$this->fecha_vencimiento)";
+		echo $sql;
+		$this->con->consultaSimple($sql);
+	}
+
+
 	public function eliminar_producto($id)
 	{
 		$sql = "Delete from producto where id = $id";
