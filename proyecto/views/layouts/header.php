@@ -11,7 +11,7 @@ if ($_SESSION['auth'] != 'si') {
 <head>
 	<meta charset="UTF-8">
 	<title>Mi pagina | Admin</title>
-	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST'] ?>/curso-php/proyecto/views/assets/css/bootstrap.min.css">
 </head>
 <body>
 

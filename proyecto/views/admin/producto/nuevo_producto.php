@@ -19,10 +19,14 @@ if ($_POST) {
 	$producto->set('nombre', $_POST['nombre']);
 	$producto->set('descripcion', $_POST['descripcion']);
 	$producto->set('imagen', $nombre_archivo);
+	$producto->set('precio_compra', $_POST['precio_compra']);
+	$producto->set('precio_venta', $_POST['precio_venta']);
+	$producto->set('cantidad_stock', $_POST['cantidad_stock']);
+	$producto->set('categoria_id', 1);
+	$producto->set('activo', 1);
+	$producto->set('fecha_vencimiento', $_POST['fecha_vencimiento']);
 	
 	$producto->insertar_producto();
-
-
 }
 
 
